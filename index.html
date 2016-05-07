@@ -1,40 +1,785 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+<meta charset="UTF-8">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+<title>Professional Report &ndash; Drew Levitt and Paul Sohn</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script> var $j = jQuery.noConflict(); </script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://rawgit.com/highslide-software/pattern-fill/master/pattern-fill-v2.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'></script>
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+<style>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
+#container1, #container2 {
+  background-color: #eeeeee;
+  text-align: center;
+  width: 80%;
+  height: 40%;
+  margin: 5px auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+.lw { font-size: 60px; }
+
+.buttons {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.button {
+  color: #6e6e6e;
+  font: bold 12px Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  padding: 7px 12px;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 1px 0 #fff;
+  -webkit-transition: border-color .218s;
+  -moz-transition: border .218s;
+  -o-transition: border-color .218s;
+  transition: border-color .218s;
+  background: #f3f3f3;
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F5F5F5), to(#F1F1F1));
+  background: -moz-linear-gradient(linear, 0% 40%, 0% 70%, from(#F5F5F5), to(#F1F1F1));
+  border: solid 1px #dcdcdc;
+  border-radius: 2px;
+ -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  margin-right: 10px;
+}
+
+.button:hover {
+  color: #333;
+  border-color: #999;
+  -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  color: #000;
+  border-color: #444;
+}
+
+.active {
+  color: #000;
+  border-color: #444;
+}
+
+.left {
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius-topright: 0;
+  border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-right-radius: 0;
+  margin: 0;
+}
+
+body {
+	margin: 40px auto;
+	max-width: 650px;
+	line-height: 1.6;
+	font-size: 18px;
+	color: #444;
+	padding: 0 10px}
+h1, h2, h3 {line-height:1.2}
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 28px;
+    height: 4px;
+    float: left;
+    margin-top: 7px;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.horizontal_dotted_line{
+    border-top: 4px dotted #118900;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+#submit {
+    background-color: #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
+#submit:hover {
+    border: none;
+    background:red;
+    box-shadow: 0px 0px 1px #777;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Cross sections</h1>
+<input type="submit" name="submit" value="Click to show/hide static cross sections materials" class="button" / onclick="return toggleMe('cs_static')"><br>
+<div id="cs_static" style="display: none;">
+	<h2><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h2>
+	This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%;">
+
+	<h2><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h2>
+	This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;">
+
+	<h2><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h2>
+	This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;">
+</div>
+
+<input type="submit" name="submit" value="Click to show/hide interactive cross sections materials" class="button" / onclick="return toggleMe('cs_vis')"><br>
+<div id="cs_vis" style="display: none;">
+	<h2>PART 1:</h2>Click the buttons below to see which lanes in each option are devoted to different travel modes.
+
+	<div class="buttons">
+	<a class="bike button">Bike</a><a class="car button">Auto</a><a class="transit button">Transit</a><a class="ped button">Pedestrian</a>
+	</div>
+
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img id="image" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%">
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img id="image2" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;">
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img id="image3" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;">
+
+	<br><br>
+
+	<h2>PART 2:</h2>Click the buttons below to see which lanes in each option are devoted to different travel modes.
+
+	<div class="buttons">
+	<a class="bike button">Bike</a><a class="car button">Auto</a><a class="transit button">Transit</a><a class="ped button">Pedestrian</a>
+	</div>
+
+	<br>
+
+	<div id="container1"><em>Click on a button above to display chart here</em></div>
+	<div id="container2"><em>Click on a button above to display chart here</em></div>
+
+	<div id="preload" style="{ display: none; }">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_bfQQdnuwjEZfjgx&amp;V=1456616745" width="1" height="1" alt="Option 1 - Base">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_034MZQL00GKpUDX&amp;V=1456616783" width="1" height="1" alt="Option 1 - Bike and Car">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1TD0x2oJHky6ke1&amp;V=14575061903" width="1" height="1" alt="Option 1 - Transit">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_6Ga99sBL9O5RHPT&amp;V=1457506230" width="1" height="1" alt="Option 1 - Pedestrian">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_6Ga99sBL9O5RHPT&amp;V=1457506230" width="1" height="1" alt="Option 2 - Base">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_0D4KGpGmR9LIfHf&amp;V=1457675691" width="1" height="1" alt="Option 2 - Bike">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_3qjX6g64qlg5Apf&amp;V=1457675725" width="1" height="1" alt="Option 2 - Car">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1LIkW57ywtHT4wZ&amp;V=1457675770" width="1" height="1" alt="Option 2 - Transit">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_0wBpL3Cuyo7sV1P&amp;V=1457675756" width="1" height="1" alt="Option 2 - Pedestrian">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&amp;V=1455909765" width="1" height="1" alt="Option 3 - Base and Transit">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_25WVlDHJYS73Kvj&amp;V=1457675872" width="1" height="1" alt="Option 3 - Bike">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_5711oAl6LcKGpKd&amp;V=1457675889" width="1" height="1" alt="Option 3 - Car">
+		 <img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_4IY8JSzD3HDttLD&amp;V=1457675901" width="1" height="1" alt="Option 3 - Pedestrian">
+	</div>
+</div>
+
+<h1>Bike infrastructure</h1>
+<input type="submit" name="submit" value="Click to show/hide static bike infrastructure materials" class="button" / onclick="return toggleMe('bi_static')"><br>
+<div id="bi_static" style="display: none;">
+	<h2><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h2>
+	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_emNVai4a8QMqOsB" style="width: 299px; height: 243px; float: right; margin-left: 10px;">The existing cycletrack from Octavia to 8th Street remains with an improved supersharrow shared lane from 8th Street to Steuart Street. Intersection and traffic-signal improvements help to make the cycle facility safer and more comfortable.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_eG5jDQo92OZEcg5" style="width: 100%;">
+
+	<h2><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h2>
+	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_0Pw7UN2ZQoJSA4Z" style="width: 294px; height: 200px; float: right; margin-left: 10px;">This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6g8tW562RmnZO6x" style="width: 100%;">
+
+	<h2><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h2>
+	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1XHwSEQexV6tHpj" style="width: 300px; height: 200px; float: right; margin-left: 10px;">This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_daGL2YC3eoWpObr" style="width: 100%;">
+</div>
+
+<input type="submit" name="submit" value="Click to show/hide interactive bike infrastructure materials" class="button" / onclick="return toggleMe('bi_vis')"><br>
+<div id="bi_vis">
+<div id="map_bike" style="width: 100%; height: 500px"></div>
+</div>
+
+<h1>Auto restrictions</h1>
+<input type="button" onclick="return toggleMe('au_static')" value="Click to show/hide static auto restrictions materials"><br>
+<div id="au_static" style="display: none;">
+</div>
+
+<input type="button" onclick="return toggleMe('au_vis')" value="Click to show/hide interactive auto restrictions materials"><br>
+<div id="au_vis">
+<div id="map_auto" style="width: 100%; height: 500px"></div>
+</div>
+
+<h1>Transit</h1>
+<input type="button" onclick="return toggleMe('tr_static')" value="Click to show/hide static transit materials"><br>
+<div id="tr_static" style="display: none;">
+</div>
+
+<input type="button" onclick="return toggleMe('tr_vis')" value="Click to show/hide interactive transit materials"><br>
+<div id="tr_vis" style="display: none;">
+</div>
+
+
+<script>
+function toggleMe(a){
+var e=document.getElementById(a);
+if(!e)return true;
+if(e.style.display=="none"){
+e.style.display="block"
+}
+else{
+e.style.display="none"
+}
+return true;
+}
+
+var option1_data_bike = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42629831815731,37.76961704678572],[-122.42342833544645,37.771927008225774]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.42342833544642,37.771927008225774],[-122.41476526589443,37.77871303016407]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41476526589443,37.7787130301641],[-122.394791136945,37.79449873746428],[-122.39319630597272,37.79325067754664],[-122.39245118002671,37.79387696397371]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42261397839705,37.77256494314589],[-122.42204230611604,37.76653103613199]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41557741752483,37.7731143698394],[-122.41872472221598,37.77561155582273]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41437713490035,37.77403493771516],[-122.4175368808605,37.77654201528038]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41159628208723,37.77622358878605],[-122.41476526589443,37.7787130301641]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40940962859304,37.7779613128038],[-122.41252734591521,37.78048184321699]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40492936572744,37.781511778663926],[-122.4080827619477,37.78399463962596]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.39826244936766,37.78679019835711],[-122.40141588504184,37.78926352195494]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39514884493576,37.78921889614882],[-122.39833200914332,37.79170060490612]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3942931979164,37.78992889480973],[-122.39736941201612,37.79246129643903]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39342329011326,37.790627616990086],[-122.39654942145272,37.79310928708305]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3925676430939,37.79130379345452],[-122.39571517069957,37.79376854088978]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.4175368808605,37.77654201528038],[-122.41791338142403,37.77679476908756],[-122.41899601258338,37.78218529594325]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41476526589443,37.7787130301641],[-122.41495862627691,37.77885395166106],[-122.4248152045813,37.777619717059885]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41751289108304,37.7833123820292],[-122.41634717565915,37.77747392298677]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41166871927187,37.7811604755567],[-122.4219060047151,37.7798787076544]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40176204981546,37.788989954609825],[-122.40202332304088,37.78912035981642],[-122.41170710818315,37.78785887278614]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40009342910456,37.79030862405445],[-122.41022660115979,37.789008412165686]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40050176045705,37.789985932117666],[-122.40165230498587,37.795719993925395]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40068890982323,37.79677275047645],[-122.39951097863562,37.79076891463204]]}}]}
+
+var option2_data_bike = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42629831815731,37.76961704678572],[-122.42342833544645,37.771927008225774]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.42342833544642,37.771927008225774],[-122.41476526589443,37.77871303016407]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.394791136945,37.79449873746428],[-122.39319630597272,37.79325067754664],[-122.39245118002671,37.79387696397371]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42261397839705,37.77256494314589],[-122.42204230611604,37.76653103613199]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41557741752483,37.7731143698394],[-122.41872472221598,37.77561155582273]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41437713490035,37.77403493771516],[-122.4175368808605,37.77654201528038]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41159628208723,37.77622358878605],[-122.41476526589443,37.7787130301641]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40940962859304,37.7779613128038],[-122.41252734591521,37.78048184321699]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40492936572744,37.781511778663926],[-122.4080827619477,37.78399463962596]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.39826244936766,37.78679019835711],[-122.40141588504184,37.78926352195494]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39514884493576,37.78921889614882],[-122.39833200914332,37.79170060490612]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3942931979164,37.78992889480973],[-122.39736941201612,37.79246129643903]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39342329011326,37.790627616990086],[-122.39654942145272,37.79310928708305]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3925676430939,37.79130379345452],[-122.39571517069957,37.79376854088978]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.4175368808605,37.77654201528038],[-122.41791338142403,37.77679476908756],[-122.41899601258338,37.78218529594325]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41476526589443,37.7787130301641],[-122.41495862627691,37.77885395166106],[-122.4248152045813,37.777619717059885]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41751289108304,37.7833123820292],[-122.41634717565915,37.77747392298677]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41166871927187,37.7811604755567],[-122.4219060047151,37.7798787076544]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40176204981546,37.788989954609825],[-122.40202332304088,37.78912035981642],[-122.41170710818315,37.78785887278614]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40009342910456,37.79030862405445],[-122.41022660115979,37.789008412165686]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40050176045705,37.789985932117666],[-122.40165230498587,37.795719993925395]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40068890982323,37.79677275047645],[-122.39951097863562,37.79076891463204]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.394791136945,37.79449873746428],[-122.40470657409935,37.78667042599035]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40470657409935,37.78667042599035],[-122.4080827619477,37.78399463962596]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.4080827619477,37.78399463962596],[-122.41476526589443,37.7787130301641]]}}]}
+
+var option3_data_bike = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42629831815728,37.76961704678572],[-122.42405681228479,37.77142117258212]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.42405681228479,37.77142117258212],[-122.41476526589443,37.7787130301641]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41476526589443,37.7787130301641],[-122.394791136945,37.79449873746428],[-122.39321916972537,37.79326857008277]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42261397839705,37.77256494314589],[-122.42204230611604,37.76653103613199]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41557741752483,37.7731143698394],[-122.41872472221598,37.77561155582273]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41437713490035,37.77403493771516],[-122.4175368808605,37.77654201528038]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41159628208723,37.77622358878605],[-122.41476526589443,37.7787130301641]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40940962859304,37.7779613128038],[-122.41252734591521,37.78048184321699]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40492936572744,37.781511778663926],[-122.4080827619477,37.78399463962596]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.39826244936766,37.78679019835711],[-122.40141588504184,37.78926352195494]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39514884493576,37.78921889614882],[-122.39833200914332,37.79170060490612]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3942931979164,37.78992889480973],[-122.39736941201612,37.79246129643903]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.39342329011326,37.790627616990086],[-122.39654942145272,37.79310928708305]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.3925676430939,37.79130379345452],[-122.39571517069957,37.79376854088978]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.4175368808605,37.77654201528038],[-122.41791338142403,37.77679476908756],[-122.41899601258338,37.78218529594325]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41476526589443,37.7787130301641],[-122.41495862627691,37.77885395166106],[-122.4248152045813,37.777619717059885]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41751289108304,37.7833123820292],[-122.41634717565915,37.77747392298677]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41166871927187,37.7811604755567],[-122.4219060047151,37.7798787076544]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40176204981546,37.788989954609825],[-122.40202332304088,37.78912035981642],[-122.41170710818315,37.78785887278614]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40009342910456,37.79030862405445],[-122.41022660115979,37.789008412165686]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40050176045705,37.789985932117666],[-122.40165230498587,37.795719993925395]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40068890982323,37.79677275047645],[-122.39951097863562,37.79076891463204]]}},{"type":"Feature","properties":{"Type":"cycletrack"},"geometry":{"type":"LineString","coordinates":[[-122.39245118002671,37.79387696397371],[-122.42034916827296,37.77177323761526]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42034916827296,37.77177323761526],[-122.42304560516968,37.77157147071756],[-122.42331266222835,37.772017622359066]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.42629831815728,37.76961704678572],[-122.42914308051525,37.76944922331818]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.41634717565915,37.77747392298677],[-122.41316972953538,37.77500809269266]]}},{"type":"Feature","properties":{"Type":"bike_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40270469112842,37.78328506486589],[-122.40582363604065,37.78578008568658]]}},{"type":"Feature","properties":{"Type":"shared_lane"},"geometry":{"type":"LineString","coordinates":[[-122.40048000887793,37.78501323078832],[-122.4033892087439,37.78735746084235],[-122.40346586717078,37.78764344585039]]}}]}
+
+var map_bike = L.map('map_bike');
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    id: 'mapbox.streets'
+}).addTo(map_bike);
+         
+// specify how to load the individual features 
+var overlayOptions_bike = {
+    onEachFeature: function (feature, layer) {
+        switch (feature.properties.Type) {
+            case 'bike_lane': layer.bindPopup('Bike lane &ndash; example image: <br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9QOl3EFmP53X9Z3" alt="Bike lane photo" height="225" width="300">'); return;
+            case 'shared_lane': layer.bindPopup('Shared lane &ndash; example image: <br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_0Ap4OEAFFGVzzEN" alt="Shared lane photo" height="200" width="300">'); return;
+            case 'cycletrack': layer.bindPopup('Cycletrack &ndash; example image: <br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_a5G1wpdUecbcYlf" alt="Shared lane photo" height="200" width="300">'); return;
+        }
+    },
+    style: function(feature) {
+        switch (feature.properties.Type) {
+            case 'bike_lane': return {color: "#118900", weight: 4, opacity: 1};
+            case 'shared_lane': return {color: "#118900", dashArray: "4, 6", weight: 4, opacity: 1};
+            case 'cycletrack': return {color: "#342BD6", weight: 4, opacity: 1};
+        }
+    }
+}
+
+// create the layer and add to map
+option1_bike = L.geoJson(option1_data_bike, overlayOptions_bike).addTo(map_bike);
+option2_bike = L.geoJson(option2_data_bike, overlayOptions_bike); 
+option3_bike = L.geoJson(option3_data_bike, overlayOptions_bike); 
+
+// fit the map window to the data points
+map_bike.fitBounds(option3_bike.getBounds());
+    
+var baseLayers_bike = {
+    "Option 1": option1_bike,
+    "Option 2": option2_bike,
+    "Option 3": option3_bike
+};
+    
+L.control.layers(baseLayers_bike, null, {collapsed: false}).addTo(map_bike);
+
+var legend_bike = L.control({position: 'bottomright'});
+
+legend_bike.onAdd = function (map_bike) {
+    var div = L.DomUtil.create('div', 'info legend');
+    
+    div.innerHTML = '<i style="background:#342BD6"></i> Cycletracks<br>' +
+                    '<i style="background:#118900"></i> Bike lanes<br>' +
+                    '<i class="horizontal_dotted_line"></i> Shared lanes<br>';
+                    
+    return div;
+};
+
+legend_bike.addTo(map_bike);
+
+
+
+var option1_data_auto = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Id":0,"type":"restricted"},"geometry":{"type":"LineString","coordinates":[[-122.41477051990985,37.778716945790286],[-122.39834469497238,37.79169455238755]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.41477051990985,37.778716945790286],[-122.41926222907868,37.77516776929]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.39834469497238,37.79169455238755],[-122.39479211078819,37.79450105474482]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.39319880534282,37.79324289708984],[-122.41861984061022,37.77312585981556]]}}]}
+
+var option2_data_auto = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Id":0,"type":"restricted"},"geometry":{"type":"LineString","coordinates":[[-122.40807250235233,37.784009146150446],[-122.39834469497238,37.79169455238755]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.40807250235233,37.784009146150446],[-122.41926222907868,37.77516776929]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.39834469497238,37.79169455238755],[-122.39479211078819,37.79450105474482]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.39319880534282,37.79324289708984],[-122.41861984061022,37.77312585981556]]}}]}
+
+var option3_data_auto = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Id":0,"type":"restricted"},"geometry":{"type":"LineString","coordinates":[[-122.41926222907868,37.77516776929],[-122.39479211078817,37.794501054744764]]}},{"type":"Feature","properties":{"Id":0,"type":"open"},"geometry":{"type":"LineString","coordinates":[[-122.39319880534282,37.79324289708984],[-122.41861984061022,37.77312585981556]]}}]}
+
+var map_auto = L.map('map_auto');
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    id: 'mapbox.streets'
+}).addTo(map_auto);
+         
+// specify how to load the individual features 
+var overlayOptions_auto = {
+    onEachFeature: function (feature, layer) {
+        switch (feature.properties.type) {
+            case 'open': layer.bindPopup("Open to private vehicles at all times"); return;
+            case 'restricted': layer.bindPopup("Open to private vehicles 7pm&ndash;7 am only"); return;
+        }
+    },
+    style: function(feature) {
+        switch (feature.properties.type) {
+            case 'open': return {color: "#118900", weight: 4, opacity: 1};
+            case 'restricted': return {color: "#ffcc00", weight: 4, opacity: 1};
+        }
+    }
+}
+
+// create the layer and add to map
+option1_auto = L.geoJson(option1_data_auto, overlayOptions_auto).addTo(map_auto);
+option2_auto = L.geoJson(option2_data_auto, overlayOptions_auto); 
+option3_auto = L.geoJson(option3_data_auto, overlayOptions_auto); 
+
+// fit the map window to the data points
+map_auto.fitBounds(option3_auto.getBounds());
+    
+var baseLayers_auto = {
+    "Option 1": option1_auto,
+    "Option 2": option2_auto,
+    "Option 3": option3_auto
+};
+    
+L.control.layers(baseLayers_auto, null, {collapsed: false}).addTo(map_auto);
+
+var legend_auto = L.control({position: 'bottomright'});
+
+legend_auto.onAdd = function (map_auto) {
+    var div = L.DomUtil.create('div', 'info legend');
+    
+    div.innerHTML = '<i style="background:#118900"></i> Open to private vehicles at all times<br>' +
+                    '<i style="background:#ffcc00"></i> Open to private vehicles 7pm&ndash;7 am only<br>';
+                    
+    return div;
+};
+
+legend_auto.addTo(map_auto);
+
+// these go down here because if you have style = "display: none;" in the HTML, then the Leaflet maps will not initialize correctly
+document.getElementById('bi_vis').style.display = 'none';
+document.getElementById('au_vis').style.display = 'none';
+
+
+
+var dataBikeMarket = [{
+                name: 'Cycle Track (outbound)',
+                data: [0, 7, 0],
+                color: '#9BE35D'         
+            },  {
+                name: 'Shared Lane (outbound)',
+                data: [15, 0, 15],
+                color: 'url(#shared-lane)'
+            },  {
+                name: 'Regular Travel Lane (outbound)',
+                data: [0, 12, 0] ,
+                color: 'lightgray'            
+            },  {
+                name: 'Regular Travel Lane (inbound)',
+                data: [0, 11, 0] ,
+                color: 'lightgray'                
+            }, {
+                name: 'Shared Lane (inbound)',
+                data: [13, 0, 13],
+                color: 'url(#shared-lane)'
+            }, {
+                name: 'Cycle Track (inbound)',
+                data: [0, 7, 0],
+                color: '#9BE35D'            
+            } ];
+            
+var dataCarMarket = [{
+                name: 'Shared Lane (outbound)',
+                data: [15, 0, 15],
+                color: 'url(#shared-lane)'
+            }, {
+                name: 'Regular Travel Lane (outbound)',
+                data: [0, 12, 0] ,
+                color: 'lightgray'             
+            }, {
+                name: 'Regular Travel Lane (inbound)',
+                data: [0, 11, 0] ,
+                color: 'lightgray'                
+            }, {
+                name: 'Shared Lane (inbound)',
+                data: [13, 0, 13],
+                color: 'url(#shared-lane)'
+            } ];
+            
+var dataTransitMarket = [ {
+                name: 'Regular Travel Lane (outbound)',
+                data: [0, 12, 0] ,
+                color: 'lightgray'             
+            }, {
+                name: 'Shared Lane (outbound)',
+                data: [15, 0, 15],
+                color: 'url(#shared-lane)'
+            }, {
+                name: 'Transit-Only Lane (outbound)',
+                data: [12, 12, 12] ,
+                color: 'red'             
+            }, {
+                name: 'Transit-Only Lane (inbound)',
+                data: [12, 11, 12] ,
+                color: 'red'                
+            }, {
+                name: 'Shared Lane (inbound)',
+                data: [13, 0, 13],
+                color: 'url(#shared-lane)'
+            },{
+                name: 'Regular Travel Lane (inbound)',
+                data: [0, 11, 0] ,
+                color: 'lightgray'                
+            }];
+            
+var dataPedMarket = [{
+                name: 'Sidewalk (outbound)',
+                data: [15, 15, 15] ,
+                color: 'gray'             
+            }, {
+                name: 'Streetlife Zone (outbound)',
+                data: [9.5, 5.5, 9.5] ,
+                color: 'lightgray'             
+            }, {
+                name: 'Curbside Boarding (inbound)',
+                data: [20, 0, 20] ,
+                color: 'lightblue'                
+            }, {
+                name: 'Streetlife Zone (inbound)',
+                data: [0, 7, 0] ,
+                color: 'lightgray'                
+            }, {
+                name: 'Sidewalk (inbound)',
+                data: [15, 15, 15] ,
+                color: 'gray'                
+            }];            
+
+var dataBikeMission = [ {
+                name: 'Cycle Track (outbound)',
+                data: [0, 0, 6.5],
+                color: '#9BE35D'        
+            }, {
+                name: 'Regular Travel Lane (outbound)',
+                data: [11, 11, 11.5] ,
+                color: 'lightgray'    
+            }, {
+                name: 'Regular Travel Lane (inbound)',
+                data: [11, 11, 11.5] ,
+                color: 'lightgray'                
+            }, {
+                name: 'Cycle Track (inbound)',
+                data: [0, 0, 6.5],
+                color: '#9BE35D'            
+            } ];
+            
+var dataCarMission = [ {
+                name: 'Regular Travel Lane (outbound)',
+                data: [22, 22, 12] ,
+                color: 'lightgray'             
+            }, {
+                name: 'Regular Travel Lane (inbound)',
+                data: [22, 22, 12] ,
+                color: 'lightgray'                
+            }];
+            
+var dataTransitMission = [  {
+                name: 'Regular Travel Lane (outbound)',
+                data: [11, 11, 11] ,
+                color: 'lightgray'             
+            },  {
+                name: 'Transit-Only Lane (outbound)',
+                data: [11, 11, 0] ,
+                color: 'red'             
+            }, {
+                name: 'Transit-Only Lane (inbound)',
+                data: [11, 11, 0] ,
+                color: 'red'                
+            }, {
+                name: 'Regular Travel Lane (inbound)',
+                data: [11, 11, 11] ,
+                color: 'lightgray'                
+            }];  
+            
+var dataPedMission = [ {
+                name: 'Sidewalk (outbound)',
+                data: [15, 15, 15] ,
+                color: 'gray'             
+            }, {
+                name: 'Sidewalk (inbound)',
+                data: [15, 15, 15] ,
+                color: 'gray'                
+            }];               
+
+var options = {
+						
+            // define custom fill pattern for shared lanes
+            defs: {
+              patterns: [{
+                'id': 'shared-lane',
+                'path': {
+                  d: 'M 0 0 L 10 10 M 9 -1 L 11 1 M -1 9 L 1 11',
+                  // stroke: Highcharts.getOptions().colors[0],
+                  stroke: "#9BE35D",
+                  strokeWidth: 3,
+                  fill: "lightgray"
+                }
+              }]
+            },
+            
+	        exporting: {
+				enabled: false
+			},
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: [{
+                categories: ['Option 1','Option 2','Option 3'],
+                reversed: true,
+                labels: {
+                    step: 1
+                }
+            }],
+            yAxis: {
+                  
+            		max: 60,
+                
+            		gridLineColor:'lightgray',
+                gridLineWidth:0,
+                
+                title: {
+                    text: null
+                },
+                labels: {
+                    formatter: function () {
+                        return Math.abs(this.value);
+                    }
+                }
+            },
+
+            plotOptions: {
+            		bar: {
+                		borderWidth: 5,
+                    dataLabels: {
+                        enabled: true,
+                        align: 'center',
+                        color: 'black',
+                        x: 0,
+                        formatter: function() {
+                            if (this.y == 0) {
+                                return null;
+                            } else {
+                                return Highcharts.numberFormat(Math.abs(this.y),0) + ' ft';
+                            }
+                        }
+                    },
+                    
+                },
+                series: {
+                    stacking: 'normal'
+                }
+            },
+
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.numberFormat(Math.abs(this.point.y),0) + ' ft';
+                }
+            },
+
+            series: []
+            };
+
+
+
+$j('.bike').click(function() {
+  if ($j(this).hasClass('active')) {
+    $j('.bike').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_bfQQdnuwjEZfjgx&V=1456616745');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1MwmYImBqQmFH0x&V=1455909698');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&V=1455909765');
+  } else {
+    $j('.bike').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_034MZQL00GKpUDX&V=1456616783');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_0D4KGpGmR9LIfHf&V=1457675691');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_25WVlDHJYS73Kvj&V=1457675872');
+    
+    $j('.car').removeClass('active');
+    $j('.transit').removeClass('active');
+    $j('.ped').removeClass('active');
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for biking on <b>Market</b> Street?';
+    options.series = dataBikeMarket;
+    options.chart.renderTo = 'container1';
+    $j(document).ready(function () {
+        var chartMarket = new Highcharts.chart(options);
+    });
+    });
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for biking on <b>Mission</b> Street?';
+    options.series = dataBikeMission;
+    options.chart.renderTo = 'container2';
+    $j(document).ready(function () {
+        var chartMission = new Highcharts.chart(options);
+    });
+    });
+  }
+  
+});
+
+$j('.car').click(function() {
+  if ($j(this).hasClass('active')) {
+    $j('.car').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_bfQQdnuwjEZfjgx&V=1456616745');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1MwmYImBqQmFH0x&V=1455909698');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&V=1455909765');
+  } else {
+    $j('.car').toggleClass('active');
+	 $j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_034MZQL00GKpUDX&V=1456616783');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_3qjX6g64qlg5Apf&V=1457675725');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_5711oAl6LcKGpKd&V=1457675889');
+    
+    $j('.bike').removeClass('active');
+    $j('.transit').removeClass('active');
+    $j('.ped').removeClass('active');
+    
+        $j(function () {
+    // Options
+    options.title.text = 'How much space for driving on <b>Market</b> Street?';
+    options.series = dataCarMarket;
+    options.chart.renderTo = 'container1';
+    $j(document).ready(function () {
+        var chartMarket = new Highcharts.chart(options);
+    });
+    });
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for driving on <b>Mission</b> Street?';
+    options.series = dataCarMission;
+    options.chart.renderTo = 'container2';
+    $j(document).ready(function () {
+        var chartMission = new Highcharts.chart(options);
+    });
+    });
+    
+  }
+});
+
+$j('.transit').click(function() {
+  if ($j(this).hasClass('active')) {
+    $j('.transit').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_bfQQdnuwjEZfjgx&V=1456616745');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1MwmYImBqQmFH0x&V=1455909698');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&V=1455909765');
+  } else {
+    $j('.transit').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1TD0x2oJHky6ke1&V=14575061903');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1LIkW57ywtHT4wZ&V=1457675770');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&V=1455909765');
+    
+    $j('.bike').removeClass('active');
+    $j('.car').removeClass('active');
+    $j('.ped').removeClass('active');
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for transit on <b>Market</b> Street?';
+    options.series = dataTransitMarket;
+    options.chart.renderTo = 'container1';
+    $j(document).ready(function () {
+        var chartMarket = new Highcharts.chart(options);
+    });
+    });    
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for transit on <b>Mission</b> Street?';
+    options.series = dataTransitMission;
+    options.chart.renderTo = 'container2';
+    $j(document).ready(function () {
+        var chartMission = new Highcharts.chart(options);
+    });
+    });
+    
+  }
+});
+
+$j('.ped').click(function() {
+  if ($j(this).hasClass('active')) {
+    $j('.ped').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_bfQQdnuwjEZfjgx&V=1456616745');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1MwmYImBqQmFH0x&V=1455909698');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9GH6wHn8AKQXsSV&V=1455909765');
+  } else {
+    $j('.ped').toggleClass('active');
+	$j('#image').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_6Ga99sBL9O5RHPT&V=1457506230');
+    $j('#image2').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_0wBpL3Cuyo7sV1P&V=1457675756');
+    $j('#image3').attr('src', 'https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_4IY8JSzD3HDttLD&V=1457675901');
+    
+    $j('.bike').removeClass('active');
+    $j('.car').removeClass('active');
+    $j('.transit').removeClass('active');
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for pedestrians on <b>Market</b> Street?';
+    options.series = dataPedMarket;
+    options.chart.renderTo = 'container1';
+    $j(document).ready(function () {
+        var chartMarket = new Highcharts.chart(options);
+    });
+    });    
+    
+    $j(function () {
+    // Options
+    options.title.text = 'How much space for pedestrians on <b>Mission</b> Street?';
+    options.series = dataPedMission;
+    options.chart.renderTo = 'container2';
+    $j(document).ready(function () {
+        var chartMission = new Highcharts.chart(options);
+    });
+    });
+    
+  }
+});
+
+</script>
+</body>
 </html>
+
+
