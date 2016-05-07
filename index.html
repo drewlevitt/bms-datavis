@@ -27,6 +27,14 @@ html {
   padding: 5px;
   border-radius: 5px;
 }
+#container {
+  background-color: #eeeeee;
+  text-align: center;
+  width: 100%;
+  margin: 5px auto;
+  padding: 5px;
+  border-radius: 5px;
+}
 .lw { font-size: 60px; }
 
 .buttons {
@@ -69,6 +77,23 @@ html {
 .button:active {
   color: #000;
   border-color: #444;
+}
+
+.buttonsContainer {
+  height: 40px;
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.buttonsLabel {
+  float: left;
+  padding: 5px;
+  width: auto;
+}
+
+.buttonsTransit {
+  float: left;
 }
 
 .active {
@@ -149,7 +174,6 @@ h1, h2, h3 {
     box-shadow: 0px 0px 1px #777;
 }
 </style>
-
 </head>
 
 <body>
@@ -157,47 +181,45 @@ h1, h2, h3 {
 
 <p>This page presents static and interactive materials pertaining to the Better Market Street project in San Francisco. The static materials are excerpted from <a href="2013-07-22_Option1.pdf">three</a> <a href="2013-07-22_Option2.pdf">PDF</a> <a href="2013-07-22_Option3.pdf">documents</a> that were available from the <a href="http://bettermarketstreetsf.org/about-reports-docs.html">Better Market Street website</a> at the time of writing. The interactive visualizations were developed by Drew Levitt and Paul Sohn in the spring of 2016.</p>
 
-<p>This work forms part of a Professional Report submitted to the UC Berkeley Department of City and Regional Planning in May 2016. The full Professional Report is available <a href="Professional_Report.pdf">here</a>.</p>
+<p>This work forms part of a Professional Report submitted to the UC Berkeley Department of City and Regional Planning in May 2016. The full Professional Report is available <a href="Professional_Report.pdf">here</a>. These visualizations can be viewed in their original Qualtrics survey context <a href="http://tinyurl.com/bms-visualization-survey">here</a>.</p>
 
 <h2>Cross sections</h2>
-<input type="submit" name="submit" value="Click to show/hide static cross sections materials" class="button" / onclick="return toggleMe('cs_static')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide static cross sections materials" class="button" / onclick="return toggleMe('cs_static')"></p>
 <div id="cs_static" style="display: none;">
+	<p>Please review the following graphics regarding the proposed street design for Market Street under each alternative:</p>
+	
 	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
-	This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%;">
+	<p>This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%;"></p>
 
 	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
-	This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;">
+	<p>This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;"></p>
 
 	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
-	This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;">
+	<p>This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;"></p>
 </div>
 
-<input type="submit" name="submit" value="Click to show/hide interactive cross sections materials" class="button" / onclick="return toggleMe('cs_vis')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide interactive cross sections materials" class="button" / onclick="return toggleMe('cs_vis')"></p>
 <div id="cs_vis" style="display: none;">
-	<strong>PART 1:</strong> Click the buttons below to see which lanes in each option are devoted to different travel modes.<br>
+	<p><strong>PART 1:</strong> Click the buttons below to see which lanes in each option are devoted to different travel modes.</p>
 
 	<div class="buttons">
 	<a class="bike button">Bike</a><a class="car button">Auto</a><a class="transit button">Transit</a><a class="ped button">Pedestrian</a>
 	</div>
 
 	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
-	This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img id="image" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%">
+	<p>This option improves Market Street’s curbside lane using striping, sharrows and other enhancements. Bicycles, transit and vehicles share the outside lanes, with transit-only center lanes. The majority of the curb remains in the existing location.<br><br><img id="image" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6DtRiXKof9M8y21" style="width: 100%"></p>
 
 	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
-	This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img id="image2" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;">
+	<p>This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit-only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<br><br><img id="image2" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1MwmYImBqQmFH0x" style="width: 100%;"></p>
 
 	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
-	This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img id="image3" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;">
+	<p>This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><br><br><img id="image3" src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_9GH6wHn8AKQXsSV" style="width: 100%;"></p>
 
-	<br><br>
-
-	<strong>PART 2:</strong> Click the buttons below to see which lanes in each option are devoted to different travel modes.<br>
+	<p><strong>PART 2:</strong> Click the buttons below to see which lanes in each option are devoted to different travel modes.</p>
 
 	<div class="buttons">
 	<a class="bike button">Bike</a><a class="car button">Auto</a><a class="transit button">Transit</a><a class="ped button">Pedestrian</a>
 	</div>
-
-	<br>
 
 	<div id="container1"><em>Click on a button above to display chart here</em></div>
 	<div id="container2"><em>Click on a button above to display chart here</em></div>
@@ -222,44 +244,114 @@ h1, h2, h3 {
 
 
 <h2>Bike infrastructure</h2>
-<input type="submit" name="submit" value="Click to show/hide static bike infrastructure materials" class="button" / onclick="return toggleMe('bi_static')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide static bike infrastructure materials" class="button" / onclick="return toggleMe('bi_static')"></p>
 <div id="bi_static" style="display: none;">
+	<p>Please review the following graphics regarding the bicycle facilities under each alternative:</p>
+	
 	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
-	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_emNVai4a8QMqOsB" style="width: 299px; height: 243px; float: right; margin-left: 10px;">The existing cycletrack from Octavia to 8th Street remains with an improved supersharrow shared lane from 8th Street to Steuart Street. Intersection and traffic-signal improvements help to make the cycle facility safer and more comfortable.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_eG5jDQo92OZEcg5" style="width: 100%;">
+	<p><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_emNVai4a8QMqOsB" style="width: 299px; height: 243px; float: right; margin-left: 10px;">The existing cycletrack from Octavia to 8th Street remains with an improved supersharrow shared lane from 8th Street to Steuart Street. Intersection and traffic-signal improvements help to make the cycle facility safer and more comfortable.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_eG5jDQo92OZEcg5" style="width: 100%;"></p>
 
 	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
-	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_0Pw7UN2ZQoJSA4Z" style="width: 294px; height: 200px; float: right; margin-left: 10px;">This option proposes a one-way cycletrack on Market Street in each direction from Steuart Street to Grant Street and 5th Street to Octavia Boulevard. Four lanes for transit and vehicles remain with transit only center lanes. The curb moves to accommodate the cycletrack, reducing the Streetlife Zone area.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6g8tW562RmnZO6x" style="width: 100%;">
+	<p><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_0Pw7UN2ZQoJSA4Z" style="width: 294px; height: 200px; float: right; margin-left: 10px;">The cycletrack from Steuart Street to Grant Street and 5th Street to Octavia Boulevard provides a safe, comfortable cycling experience. Intersection and traffic-signal improvements also help to make the cycle facility more legible.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_6g8tW562RmnZO6x" style="width: 100%;"></p>
 
 	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
-	<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1XHwSEQexV6tHpj" style="width: 300px; height: 200px; float: right; margin-left: 10px;">This option proposes a one-way, buffered cycletrack on Mission Street in each direction. All transit moves from Mission Street to Market Street and two lanes of vehicular traffic remain on Mission Street. Pedestrians benefit from street life improvements on both Market and Mission Streets. <em>(For Market Street elements see Option 1)</em><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_daGL2YC3eoWpObr" style="width: 100%;">
+	<p><img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_1XHwSEQexV6tHpj" style="width: 300px; height: 200px; float: right; margin-left: 10px;">This option proposes a buffered cycletrack on Mission Street from South Van Ness to the Embarcadero, with greenwave signal timing (synchronized lights for bicycles). There is an opportunity to create new cycle connections to/from Valencia and the Wiggle and between Market Street and Mission Street. The perpendicular intersections and absence of F-line tracks or BART grates on Mission Street allow for safe travel and comfortable left turns.<img src="https://berkeley.qualtrics.com/CP/Graphic.php?IM=IM_daGL2YC3eoWpObr" style="width: 100%;"></p>
 </div>
 
-<input type="submit" name="submit" value="Click to show/hide interactive bike infrastructure materials" class="button" / onclick="return toggleMe('bi_vis')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide interactive bike infrastructure materials" class="button" / onclick="return toggleMe('bi_vis')"></p>
 <div id="bi_vis">
+	<p>Please take a few moments to explore the information presented below. You can zoom and pan the interactive map, examine the bike infrastructure proposed in each project option using the buttons in the upper right corner, and click on each line on the map to see a photo of what that type of bike lane looks like.</p>
+	
 	<div id="map_bike" style="width: 100%; height: 500px"></div>
+	
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	<p>The existing cycletrack from Octavia to 8th Street remains with an improved supersharrow shared lane from 8th Street to Steuart Street. Intersection and traffic-signal improvements help to make the cycle facility safer and more comfortable.</p>
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	<p>The cycletrack from Steuart Street to Grant Street and 5th Street to Octavia Boulevard provides a safe, comfortable cycling experience. Intersection and traffic-signal improvements also help to make the cycle facility more legible.</p>
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	<p>This option proposes a buffered cycletrack on Mission Street from South Van Ness to the Embarcadero, with greenwave signal timing (synchronized lights for bicycles). There is an opportunity to create new cycle connections to/from Valencia and the Wiggle and between Market Street and Mission Street. The perpendicular intersections and absence of F-line tracks or BART grates on Mission Street allow for safe travel and comfortable left turns.</p>
 </div>
 
 
 
 <h2>Auto restrictions</h2>
-<input type="submit" name="submit" value="Click to show/hide static auto restrictions materials" class="button" / onclick="return toggleMe('au_static')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide static auto restrictions materials" class="button" / onclick="return toggleMe('au_static')"></p>
 <div id="au_static" style="display: none;">
+	<p>Please take a few moments to review the following graphics regarding restrictions for private automobiles under each alternative:</p>
+
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane east of 8th Street, auto restrictions are recommended 7am to 7pm from Fremont Street to 8th Street to accommodate peak transit flow from the Transbay Terminal to 5th Street.<br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_8JpOqtgrVX1ZoqN&amp;V=1458858149" style="width: 60%;"></p>
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane from Grant Street to 5th Street, auto restrictions are recommended 7am to 7pm from Fremont Street to 5th Street to accommodate peak transit flow on Market Street from the Transbay Terminal to 5th Street.<br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_54ROlVFTK1YOQLz&amp;V=1458858158" style="width: 60%;"></p>
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane east of 8th Street and the rerouting of buses from Mission Street, maximum auto restrictions are recommended 7am to 7pm from Fremont Street to Van Ness Avenue. New left turns in this option help facilitate traffic crossing Market Street.<br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_25ZGmRyau1ge6i1&amp;V=1458858169" style="width: 60%;"></p>
 </div>
 
-<input type="submit" name="submit" value="Click to show/hide interactive auto restrictions materials" class="button" / onclick="return toggleMe('au_vis')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide interactive auto restrictions materials" class="button" / onclick="return toggleMe('au_vis')"></p>
 <div id="au_vis">
+	<p>Please take a few moments to explore the information presented below. You can zoom and pan the interactive map, examine the auto restrictions proposed in each project option using the buttons in the upper right corner, and click on each line on the map to see when private cars are permitted to travel along that street segment.</p>
+	
 	<div id="map_auto" style="width: 100%; height: 500px"></div>
+	
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane east of 8th Street, auto restrictions are recommended 7am to 7pm from Fremont Street to 8th Street to accommodate peak transit flow from the Transbay Terminal to 5th Street.</p>
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane from Grant Street to 5th Street, auto restrictions are recommended 7am to 7pm from Fremont Street to 5th Street to accommodate peak transit flow on Market Street from the Transbay Terminal to 5th Street.</p>
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	<p>Due to the shared bicycle / vehicular lane east of 8th Street and the rerouting of buses from Mission Street, maximum auto restrictions are recommended 7am to 7pm from Fremont Street to Van Ness Avenue. New left turns in this option help facilitate traffic crossing Market Street.</p>
 </div>
 
 
 
 <h2>Transit</h2>
-<input type="submit" name="submit" value="Click to show/hide static transit materials" class="button" / onclick="return toggleMe('tr_static')"><br>
+<p><input type="submit" name="submit" value="Click to show/hide static transit materials" class="button" / onclick="return toggleMe('tr_static')"></p>
 <div id="tr_static" style="display: none;">
+	<p>Please take a few moments to explore the information presented below. Two types of bus service &ndash; local enhanced and rapid &ndash; run along Market Street, Additionally, each bus line can pick up passengers on the right side of the street (curb boarding) or at a dedicated boarding island in the middle of the street (center boarding). The charts below show improvements to transit speed for each of these combinations under each option’s recommended and maximum auto restrictions.</p>
+	
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	<p>This option retains four vehicular travel lanes and transit only center lanes. Boarding islands are upgraded to meet accessibility standards and improve the  experience of waiting for transit. Intersection improvements, transit stop consolidation, service changes and auto restrictions result in varying percentages of faster service.<br><br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9NweKtNfIQ8wByl&V=1458852114" style="width: 100%;"></p>
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	<p>The separated bicycle facility reduces bike-transit conflicts. This option retains four vehicular travel lanes and transit only center lanes. Boarding islands are upgraded to meet accessibility standards and improve the experience of waiting for transit. Intersection improvements, transit stop consolidation, service changes and auto restrictions result in varying percentages of faster service.<br><br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_4SF9uMGeOy1Mzxb&V=1458852158" style="width: 100%;"></p>
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	<p>In this option the 14/14L, Golden Gate Transit and SamTrans bus lines move to Market Street. This proposal requires making Market Street the transit priority corridor. Bicycles and automobiles would primarily use Mission Street.<br><br><img src="https://berkeley.qualtrics.com/ControlPanel/Graphic.php?IM=IM_9yssQ35uId4sUnP&V=1458852172" style="width: 80%;"></p>
 </div>
 
-<input type="submit" name="submit" value="Click to show/hide interactive transit materials" class="button" / onclick="return toggleMe('tr_vis')"><br>
-<div id="tr_vis" style="display: none;">
+<p><input type="submit" name="submit" value="Click to show/hide interactive transit materials" class="button" / onclick="return toggleMe('tr_vis')"></p>
+<div id="tr_vis">
+	<p>Please take a few moments to explore the information presented below. Two types of bus service &ndash; local enhanced and rapid &ndash; run along Market Street, Additionally, each bus line can pick up passengers on the right side of the street (curb boarding) or at a dedicated boarding island in the middle of the street (center boarding). The charts below show improvements to transit speed for each of these combinations under each option’s recommended and maximum auto restrictions. Use the buttons above the chart to toggle between curb and center boarding, and between recommended and maximum auto restrictions. You can hover over a column to see more detailed information.</p>
+
+	<div class="buttonsContainer">
+	<div class="buttonsLabel"> Click to change auto restrictions: </div>
+	<div class="buttonsTransit">
+	  <a class="autoRec button left">Recommended</a><a class="autoMax button right">Maximum</a>
+	</div>
+	</div>
+
+	<div class="buttonsContainer">
+	<div class="buttonsLabel"> Click to change boarding location: </div>
+	<div class="buttonsTransit">
+	  <a class="boardCurb button left">Curb Boarding</a><a class="boardCenter button right">Center Boarding</a>
+	</div>
+	</div>
+
+	<div id="container" style="width: 650px;"></div>
+
+	<h3><span style="color:#008000;">OPTION 1:</span>&nbsp;MARKET STREET</h3>
+	<p>This option retains four vehicular travel lanes and transit only center lanes. Boarding islands are upgraded to meet accessibility standards and improve the  experience of waiting for transit. Intersection improvements, transit stop consolidation, service changes and auto restrictions result in varying percentages of faster service.</p>
+
+	<h3><span style="color:#008000;">OPTION 2:</span>&nbsp;MARKET STREET</h3>
+	<p>The separated bicycle facility reduces bike-transit conflicts. This option retains four vehicular travel lanes and transit only center lanes. Boarding islands  are upgraded to meet accessibility standards and improve the experience of waiting for transit. Intersection improvements, transit stop consolidation, service changes and auto restrictions  result in varying percentages of faster service.</p>
+
+	<h3><span style="color:#008000;">OPTION 3:</span>&nbsp;MARKET STREET + MISSION STREET</h3>
+	<p>In this option the 14/14L, Golden Gate Transit and SamTrans bus lines move to Market Street. This proposal requires making Market Street the transit priority corridor. Bicycles and automobiles would primarily use Mission Street.</p>
 </div>
 
 <script>
@@ -402,11 +494,10 @@ legend_auto.onAdd = function (map_auto) {
 
 legend_auto.addTo(map_auto);
 
-// these go down here because if you have style = "display: none;" in the HTML, then the Leaflet maps will not initialize correctly
-document.getElementById('bi_vis').style.display = 'none';
-document.getElementById('au_vis').style.display = 'none';
 
 
+
+// Cross sections
 
 var dataBikeMarket = [{
                 name: 'Cycle Track (outbound)',
@@ -556,7 +647,7 @@ var dataPedMission = [ {
                 color: 'gray'                
             }];               
 
-var options = {
+var options_cs = {
 						
             // define custom fill pattern for shared lanes
             defs: {
@@ -658,21 +749,21 @@ $j('.bike').click(function() {
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for biking on <b>Market</b> Street?';
-    options.series = dataBikeMarket;
-    options.chart.renderTo = 'container1';
+    options_cs.title.text = 'How much space for biking on <b>Market</b> Street?';
+    options_cs.series = dataBikeMarket;
+    options_cs.chart.renderTo = 'container1';
     $j(document).ready(function () {
-        var chartMarket = new Highcharts.chart(options);
+        var chartMarket = new Highcharts.chart(options_cs);
     });
     });
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for biking on <b>Mission</b> Street?';
-    options.series = dataBikeMission;
-    options.chart.renderTo = 'container2';
+    options_cs.title.text = 'How much space for biking on <b>Mission</b> Street?';
+    options_cs.series = dataBikeMission;
+    options_cs.chart.renderTo = 'container2';
     $j(document).ready(function () {
-        var chartMission = new Highcharts.chart(options);
+        var chartMission = new Highcharts.chart(options_cs);
     });
     });
   }
@@ -697,21 +788,21 @@ $j('.car').click(function() {
     
         $j(function () {
     // Options
-    options.title.text = 'How much space for driving on <b>Market</b> Street?';
-    options.series = dataCarMarket;
-    options.chart.renderTo = 'container1';
+    options_cs.title.text = 'How much space for driving on <b>Market</b> Street?';
+    options_cs.series = dataCarMarket;
+    options_cs.chart.renderTo = 'container1';
     $j(document).ready(function () {
-        var chartMarket = new Highcharts.chart(options);
+        var chartMarket = new Highcharts.chart(options_cs);
     });
     });
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for driving on <b>Mission</b> Street?';
-    options.series = dataCarMission;
-    options.chart.renderTo = 'container2';
+    options_cs.title.text = 'How much space for driving on <b>Mission</b> Street?';
+    options_cs.series = dataCarMission;
+    options_cs.chart.renderTo = 'container2';
     $j(document).ready(function () {
-        var chartMission = new Highcharts.chart(options);
+        var chartMission = new Highcharts.chart(options_cs);
     });
     });
     
@@ -736,21 +827,21 @@ $j('.transit').click(function() {
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for transit on <b>Market</b> Street?';
-    options.series = dataTransitMarket;
-    options.chart.renderTo = 'container1';
+    options_cs.title.text = 'How much space for transit on <b>Market</b> Street?';
+    options_cs.series = dataTransitMarket;
+    options_cs.chart.renderTo = 'container1';
     $j(document).ready(function () {
-        var chartMarket = new Highcharts.chart(options);
+        var chartMarket = new Highcharts.chart(options_cs);
     });
     });    
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for transit on <b>Mission</b> Street?';
-    options.series = dataTransitMission;
-    options.chart.renderTo = 'container2';
+    options_cs.title.text = 'How much space for transit on <b>Mission</b> Street?';
+    options_cs.series = dataTransitMission;
+    options_cs.chart.renderTo = 'container2';
     $j(document).ready(function () {
-        var chartMission = new Highcharts.chart(options);
+        var chartMission = new Highcharts.chart(options_cs);
     });
     });
     
@@ -775,26 +866,187 @@ $j('.ped').click(function() {
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for pedestrians on <b>Market</b> Street?';
-    options.series = dataPedMarket;
-    options.chart.renderTo = 'container1';
+    options_cs.title.text = 'How much space for pedestrians on <b>Market</b> Street?';
+    options_cs.series = dataPedMarket;
+    options_cs.chart.renderTo = 'container1';
     $j(document).ready(function () {
-        var chartMarket = new Highcharts.chart(options);
+        var chartMarket = new Highcharts.chart(options_cs);
     });
     });    
     
     $j(function () {
     // Options
-    options.title.text = 'How much space for pedestrians on <b>Mission</b> Street?';
-    options.series = dataPedMission;
-    options.chart.renderTo = 'container2';
+    options_cs.title.text = 'How much space for pedestrians on <b>Mission</b> Street?';
+    options_cs.series = dataPedMission;
+    options_cs.chart.renderTo = 'container2';
     $j(document).ready(function () {
-        var chartMission = new Highcharts.chart(options);
+        var chartMission = new Highcharts.chart(options_cs);
     });
     });
     
   }
 });
+
+
+// Transit chart
+
+var options = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Increase in Bus Speeds on Market Street'
+  },
+  subtitle: {
+    text: 'My custom subtitle'
+  },
+  tooltip: {
+    formatter: function() {
+      return this.x + '<br>' + this.series.name +
+        ": service will be " + this.y + ' percent faster';
+    }
+  },
+  xAxis: {
+    categories: [
+      'Local Enhanced Service',
+      'Rapid Service'
+    ]
+  },
+  yAxis: {
+    max: 25,
+    min: 0,
+    title: {
+      text: '% Faster'
+    }
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Option 1',
+    data: [18, 16],
+    color: '#a6cee3'
+  }, {
+    name: 'Option 2',
+    data: [18, 16],
+    color: '#1f78b4'
+  }, {
+    name: 'Option 3',
+    data: [17, 15],
+    color: '#b2df8a'
+  }]
+};
+
+var chart = '';
+
+$j(function() {
+  // Options
+  options.subtitle.text = 'With <b>Recommended</b> Auto Restrictions and <b>Curb</b> Boarding';
+  options.chart.renderTo = 'container';
+  chart = new Highcharts.chart(options);
+  $j('.autoRec').toggleClass('active');
+  $j('.boardCurb').toggleClass('active');
+});
+
+$j('.autoRec').click(function() {
+  if (!$j(this).hasClass('active')) {
+    $j('.autoRec').toggleClass('active');
+    $j('.autoMax').removeClass('active');
+
+    if ($j('.boardCurb').hasClass('active')) {
+      chart.series[0].setData([18, 16]);
+      chart.series[1].setData([18, 16]);
+      chart.series[2].setData([17, 15]);
+      chart.setTitle(null, {
+        text: 'With <b>Recommended</b> Auto Restrictions and <b>Curb</b> Boarding'
+      });
+    } else {
+      chart.series[0].setData([16, 20]);
+      chart.series[1].setData([14, 19]);
+      chart.series[2].setData([11, 16]);
+      chart.setTitle(null, {
+        text: 'With <b>Recommended</b> Auto Restrictions and <b>Center</b> Boarding'
+      });
+    }
+  }
+});
+
+$j('.autoMax').click(function() {
+  if (!$j(this).hasClass('active')) {
+    $j('.autoMax').toggleClass('active');
+    $j('.autoRec').removeClass('active');
+
+    if ($j('.boardCurb').hasClass('active')) {
+      chart.series[0].setData([17, 19]);
+      chart.series[1].setData([24, 22]);
+      chart.series[2].setData([17, 15]);
+      chart.setTitle(null, {
+        text: 'With <b>Maximum</b> Auto Restrictions and <b>Curb</b> Boarding'
+      });
+    } else {
+      chart.series[0].setData([21, 22]);
+      chart.series[1].setData([17, 22]);
+      chart.series[2].setData([11, 16]);
+      chart.setTitle(null, {
+        text: 'With <b>Maximum</b> Auto Restrictions and <b>Center</b> Boarding'
+      });
+    }
+  }
+});
+
+$j('.boardCurb').click(function() {
+  if (!$j(this).hasClass('active')) {
+    $j('.boardCurb').toggleClass('active');
+    $j('.boardCenter').removeClass('active');
+    if ($j('.autoRec').hasClass('active')) {
+      chart.series[0].setData([18, 16]);
+      chart.series[1].setData([18, 16]);
+      chart.series[2].setData([17, 15]);
+      chart.setTitle(null, {
+        text: 'With <b>Recommended</b> Auto Restrictions and <b>Curb</b> Boarding'
+      });
+    } else {
+      chart.series[0].setData([17, 19]);
+      chart.series[1].setData([24, 22]);
+      chart.series[2].setData([17, 15]);
+      chart.setTitle(null, {
+        text: 'With <b>Maximum</b> Auto Restrictions and <b>Curb</b> Boarding'
+      });
+    }
+  }
+});
+
+$j('.boardCenter').click(function() {
+  if (!$j(this).hasClass('active')) {
+    $j('.boardCenter').toggleClass('active');
+    $j('.boardCurb').removeClass('active');
+
+    if ($j('.autoRec').hasClass('active')) {
+      chart.series[0].setData([16, 20]);
+      chart.series[1].setData([14, 19]);
+      chart.series[2].setData([11, 16]);
+      chart.setTitle(null, {
+        text: 'With <b>Recommended</b> Auto Restrictions and <b>Center</b> Boarding'
+      });
+    } else {
+      chart.series[0].setData([21, 22]);
+      chart.series[1].setData([17, 22]);
+      chart.series[2].setData([11, 16]);
+      chart.setTitle(null, {
+        text: 'With <b>Maximum</b> Auto Restrictions and <b>Center</b> Boarding'
+      });
+    }
+  }
+});
+
+// these go down here because if you have style = "display: none;" in the HTML, then the Leaflet maps and Highcharts charts will not initialize correctly
+document.getElementById('bi_vis').style.display = 'none';
+document.getElementById('au_vis').style.display = 'none';
+document.getElementById('tr_vis').style.display = 'none';
+
 
 </script>
 </body>
